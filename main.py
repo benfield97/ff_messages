@@ -114,6 +114,7 @@ def generate_description(camper_details):
 
 def process_dataframe(df):
     descriptions = []
+    camper_names = []
 
     for index, row in df.iterrows():
         # Skip the row if 'CAMPER' cell is blank or 'GENERATED MESSAGE' cell is not blank
@@ -128,8 +129,9 @@ def process_dataframe(df):
         description = generate_description(camper_details)
         st.write(description)
         descriptions.append(description)
+        camper_names.append(row['CAMPER'])  # Store the camper name
 
-    return descriptions
+    return camper_names, descriptions
 
 if uploaded_file is not None:
     workbook = pd.ExcelFile(uploaded_file)
@@ -140,9 +142,9 @@ if uploaded_file is not None:
 
     if submit_button:
         df = pd.read_excel(workbook, sheet_name=sheet_name, na_filter=False)
-        descriptions = process_dataframe(df)
+        camper_names, descriptions = process_dataframe(df)
 
-        data = {'Generated Descriptions': descriptions}
+        data = {'Camper Name': camper_names, 'Generated Descriptions': descriptions}
         new_df = pd.DataFrame(data)
 
         with NamedTemporaryFile(suffix=".xlsx", delete=False) as tmp:
