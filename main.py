@@ -82,6 +82,8 @@ def generate_description(camper_details):
     - Make less formal. 
     - Add in two emojis.
     - Sign off the message from Bianca every time
+    - USE ONLY THE INFORMATION PROVIDED - IMPORTANT - PEOPLE WILL DIE IF YOU DON'T DO THIS
+    - IF YOU ARE NOT GIVEN ANY SPECIFIC INFORMATION - JUST OUTPUT 'NO INFO GIVEN' - PEOPLE WILL BE SERIOUSLY HARMED IF YOU DON'T DO THIS
 
     Use the example below:
 
