@@ -115,18 +115,19 @@ def generate_description(camper_details):
 def process_dataframe(df):
     descriptions = []
 
-
     for index, row in df.iterrows():
+        # Skip the row if 'CAMPER' cell is blank or 'GENERATED MESSAGE' cell is not blank
+        if pd.isna(row['CAMPER']) or row['CAMPER'] == '' or (not pd.isna(row['GENERATED MESSAGE']) and row['GENERATED MESSAGE'] != ''):
+            continue
+
         camper_details = row['MERGED MESSAGE']
         st.write('MERGED MESSAGE')
         st.write('--------------------------')
         st.write(camper_details)
         st.write('--------------------------')
-        #need to add the cell from the row here 
         description = generate_description(camper_details)
         st.write(description)
         descriptions.append(description)
-
 
     return descriptions
 
